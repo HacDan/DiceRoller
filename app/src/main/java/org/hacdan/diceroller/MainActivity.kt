@@ -13,17 +13,23 @@ class MainActivity : AppCompatActivity() {
 
         val rollButton: Button = findViewById(R.id.btnRoll)
         val diceValueTV: TextView = findViewById(R.id.tvDiceRoll)
+        val diceSixSides = Dice(6)
+
+        diceValueTV.text = diceSixSides.roll().toString()
 
         rollButton.setOnClickListener{
             val toast = Toast.makeText(this, "Dice Rolled!", Toast.LENGTH_SHORT)
             toast.show()
-            diceValueTV.setText(diceRoll().toString())
+            diceValueTV.text = diceSixSides.roll().toString()
         }
 
 
     }
+}
 
-    fun diceRoll(): Int {
-        return (1..6).random()
+class Dice (private val numSides : Int) {
+    fun roll(): Int {
+        return (1..numSides).random()
     }
+
 }
